@@ -8,6 +8,7 @@ import 'package:geolocator/geolocator.dart';
 import '../SString.dart';
 import 'distance_widget.dart';
 
+import 'package:url_launcher/url_launcher.dart';
 class CNHomeScreenCard extends StatefulWidget {
   StreamSubscription<Position> positionStream;
   ValueNotifier<Position>val;
@@ -31,7 +32,6 @@ class _CNHomeScreenCardState extends State<CNHomeScreenCard> {
 
 
     widget.val.addListener((){
-      print("sd");
 
     });
 
@@ -86,15 +86,26 @@ class _CNHomeScreenCardState extends State<CNHomeScreenCard> {
                                   child:new Text(CnString.coordinates),
 
                                 ),
-                                new Padding(padding: EdgeInsets.only(top:8.0),
+                               new InkWell(
+                                 onTap: () async {
+                                   String url = "https://maps.google.com/maps/search/?api=1&q=loc:${snapshot.data[CnString.lat] },${snapshot.data[CnString.lng] }";
+                                    print(await canLaunch(url));
+                                    launch(url);
+                                 },
+                                 child:  new Column(
+                                   children: <Widget>[
+                                     new Padding(padding: EdgeInsets.only(top:8.0),
 
-                                  child:new Text("${CnString.lat}  ${snapshot.data[CnString.lat] }"),
+                                       child:new Text("${CnString.lat}  ${snapshot.data[CnString.lat] }"),
 
-                                ),
-                                new Padding(padding: EdgeInsets.only(top:8.0),
+                                     ),
+                                     new Padding(padding: EdgeInsets.only(top:8.0),
 
-                                  child:new Text("${CnString.lng}  ${snapshot.data[CnString.lng] }"),
-                                ),
+                                       child:new Text("${CnString.lng}  ${snapshot.data[CnString.lng] }"),
+                                     ),
+                                   ],
+                                 ),
+                               ),
                                 new Divider(color: Colors.black,),
                                 new Row(
                                   children: <Widget>[
@@ -103,7 +114,7 @@ class _CNHomeScreenCardState extends State<CNHomeScreenCard> {
                                       child:new Text(CnString.distance+" "),
 
                                     ),
-                                   new Flexible(child: DistanceFinder(startLatitude: (widget.val.value.latitude!=null)?widget.val.value.latitude:0.0,startLongitude: (widget.val.value.longitude!=null)?widget.val.value.longitude:0.0,endLatitude: snapshot.data[CnString.lat],endLongitude: snapshot.data[CnString.lng],valueNotifier: widget.val,uid: snapshot.data[CnString.uid],))
+                                   new Flexible(child: DistanceFinder(startLatitude: (widget.val.value!=null)?widget.val.value.latitude:0.0,startLongitude: (widget.val.value!=null)?widget.val.value.longitude:0.0,endLatitude: snapshot.data[CnString.lat],endLongitude: snapshot.data[CnString.lng],valueNotifier: widget.val,uid: snapshot.data[CnString.uid],))
                                   ],
                                 ),
 

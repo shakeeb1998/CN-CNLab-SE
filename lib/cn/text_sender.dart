@@ -120,7 +120,7 @@ class _TextSEnderState extends State<TextSEnder> {
       {
         print(i.contact.phones.toList().first.value );
         SmsSender sender = new SmsSender();
-        SmsMessage message = new SmsMessage(i.contact.phones.toList().first.value , 'Hello flutter!');
+        SmsMessage message = new SmsMessage(i.contact.phones.toList().first.value , 'Download Our App at saadismail.net/lost');
         message.onStateChanged.listen((state) {
           if (state == SmsMessageState.Sent) {
             print("SMS is sent!");

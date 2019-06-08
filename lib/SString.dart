@@ -36,6 +36,10 @@ class CnString{
   static const String  distance='Distance';
   static const String restID='restID';
 
+  static const String baseUrl='127.0.0.1:8000/';
+  static const String enterdata='enterdata/';
+
+
 
 
 
@@ -85,6 +89,51 @@ class ModelOrderC{
   static const String s='s';
   static const String restName='restName';
   static const String orderID='orderID';
+
+
+}
+
+class Apis{
+  Apis._();
+  static const String baseUrl='https://cn-lab.herokuapp.com/';
+  static const String student='student/';
+  static const String teacher='teacher/';
+  static const String classes='classes/';
+  static const String class1='class/';
+
+  static const String getStudentclass=baseUrl+student+classes;
+
+static const getTeacherClass=baseUrl+teacher+classes;
+
+
+
+}
+
+class CnLab{
+  static const String start='on_going';
+  static const String muid='_id';
+
+
+}
+
+class CnApis{
+  static const String id='id';
+  static const String name="name";
+  static const String email='email';
+  static const String fcm_id='fcm_id';
+  static const String uid="uid";
+
+}
+class LocationDataModel{
+  static const place='place';
+  static const lat='lat';
+  static const lon='lon';
+  static const uid='uid';
+  static const parent_uid='parent_uid';
+  static const day='day';
+  static const time='time';
+  static const month='month';
+  static const date='date';
 
 
 }

@@ -12,6 +12,7 @@ class FireBaseLogin extends StatefulWidget {
 class _FireBaseLoginState extends State<FireBaseLogin> {
   @override
   Widget build(BuildContext context) {
+    print("qwerty");
     return Scaffold(
       appBar: new AppBar(title: new Text(SString.cnlLablogin),backgroundColor: Colors.pink,),
       body: Builder(builder: (BuildContext context) {

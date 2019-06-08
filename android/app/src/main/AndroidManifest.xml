@@ -15,10 +15,11 @@
 
     <application
         android:name="io.flutter.app.FlutterApplication"
-        android:label="on_day1"
+        android:label="!LOST"
         android:icon="@mipmap/ic_launcher">
         <activity
-            android:name=".MainActivity"
+                android:resizeableActivity="false"
+        android:name=".MainActivity"
             android:launchMode="singleTop"
             android:theme="@style/LaunchTheme"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"

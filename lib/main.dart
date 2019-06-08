@@ -15,16 +15,18 @@ import 'package:on_day/se/se_resturant/resturant_splash.dart';
 import 'package:on_day/se/se_splash.dart';
 import 'cn/splash.dart';
 import 'cnlab/cn_lab-splash.dart';
+import 'cnlab/cnlab_sir/cnlab_sir_splash.dart';
 import 'cnlab/socketTest.dart';
 import 'common/login.dart';
 import 'cn/text_sender.dart';
+import 'eWallet/home_page.dart';
 
 void main() {
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
   runApp(
     MaterialApp(
-      home: SESPlash(),
+      home: CNSplash(),
     ),
   );
 }

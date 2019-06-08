@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 import 'package:flutter/cupertino.dart';
@@ -8,7 +11,9 @@ import 'package:on_day/SString.dart';
 import 'package:on_day/common/login.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'cnlab_student_homescreen.dart';
 import 'socketTest.dart';
+import 'package:image_picker/image_picker.dart';
 class CNlabsplash extends StatefulWidget {
   @override
   _CNlabsplashState createState() => _CNlabsplashState();
@@ -35,9 +40,15 @@ class _CNlabsplashState extends State<CNlabsplash> {
     String email=preferences.getString(CnString.email);
     if(uid!=null)
     {
+//      var a=ImagePicker();
+//      File image=await ImagePicker.pickImage(source: ImageSource.camera);
+//      List<int> imageBytes = image.readAsBytesSync();
+//      print(imageBytes);
+//      String base64Image = base64Encode(imageBytes);
+
       print("help");
       Navigator.of(context).pushReplacement(
-          CupertinoPageRoute(builder: (BuildContext context) => SocketTest(uid: uid,email: email,)));
+          CupertinoPageRoute(builder: (BuildContext context) => CNLabHome(preferences: preferences),));
     }
     else
     {

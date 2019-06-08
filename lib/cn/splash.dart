@@ -28,32 +28,39 @@ class _CNSplashState extends State<CNSplash> {
   StatefulWidget retScreen;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: new SplashScreen(
-          imagePath: 'assets/logo.png',
-          home: retScreen,
-          duringSplash: ()=>duringSplash(),
-          duration: 1500),
+    print("shakeeb");
+    print(context);
+    return  Scaffold(
+        body: new SplashScreen(
+            imagePath: 'assets/logo1.jpg',
+            home: retScreen,
+            duringSplash: ()=>duringSplash(context),
+            duration: 1500),
+
     );
   }
 
 
-  duringSplash()
+  duringSplash(BuildContext context1)
   async {
     await Future.delayed(const Duration(seconds: 2), () => "1");
    SharedPreferences preferences= await SharedPreferences.getInstance();
    String uid=preferences.getString(CnString.uid);
-   if(uid!=null)
+   if(uid != null)
      {
        print("help");
-       Navigator.of(context).pushReplacement(
-           CupertinoPageRoute(builder: (BuildContext context) => CNHome(uid: uid,email:preferences.getString(CnString.email),photo: preferences.getString(CnString.photourl),name:preferences.getString(CnString.name),)));
+       Navigator.of(context1).pushReplacement(
+           MaterialPageRoute(builder: ( context1) => CNHome(
+             preferences: preferences,
+             uid: uid,email:preferences.getString(CnString.email),photo: preferences.getString(CnString.photourl),name:preferences.getString(CnString.name),)));
      }
      else
        {
+         print(context);
+
          print("death");
-         Navigator.of(context).pushReplacement(
-             CupertinoPageRoute(builder: (BuildContext context) => FireBaseLogin()));
+         Navigator.of(context1).pushReplacement(
+             MaterialPageRoute(builder: ( context1) => FireBaseLogin(app: null,)));
        }
 
 

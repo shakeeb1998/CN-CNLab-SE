@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 import '../SString.dart';
+import 'functions/api_calls.dart';
 
 class CNAcceptRequestCard extends StatefulWidget {
   DocumentSnapshot documentSnapshot;
@@ -65,6 +66,7 @@ class _CNAcceptRequestCardState extends State<CNAcceptRequestCard> {
     Firestore.instance.collection(CnString.fusercollectiom).document(widget.uid).collection(CnString.frequests).document(widget.documentSnapshot[CnString.uid]).delete().then((v){print("delelted");});
 
         Firestore.instance.collection(CnString.fusercollectiom).document(widget.documentSnapshot[CnString.uid]).collection(CnString.ffrens).document(widget.uid).setData({CnString.uid:widget.uid}).then((v){print("friend added");});
+    addParent(parentUid:widget.documentSnapshot[CnString.uid].toString(),childUid: widget.uid );
 
   }
 

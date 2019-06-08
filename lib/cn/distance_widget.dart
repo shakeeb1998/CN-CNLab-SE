@@ -41,11 +41,11 @@ class _DistanceFinderState extends State<DistanceFinder> {
 
         SharedPreferences.getInstance().then((shared){
           bool uid=shared.getBool("alert"+widget.uid);
-          if(uid){
+          if(uid!=null && uid){
            if((snapshot.data)>10)
              {
                Vibration.cancel();
-               Vibration.vibrate();
+               Vibration.vibrate(duration: 1000);
              }
           }
           else{
@@ -55,7 +55,6 @@ class _DistanceFinderState extends State<DistanceFinder> {
 
 
 
-            print("disatnce calcukations");
             return new AutoSizeText((snapshot.data.toString()).toString(),maxLines: 1,);
           }
           else
@@ -96,11 +95,14 @@ class _AlertToggleState extends State<AlertToggle> {
                 val=snapshot.data.getBool("alert"+widget.uid);
 
                 return new Switch(value: val, onChanged: (bool va){
-                  setState(() {
-                    val=va;
-                    snapshot.data.setBool("alert"+widget.uid,va);
+                if(mounted)
+                  {
+                    setState(() {
+                      val=va;
+                      snapshot.data.setBool("alert"+widget.uid,va);
 
-                  });
+                    });
+                  }
                 });
 
               }
@@ -109,10 +111,12 @@ class _AlertToggleState extends State<AlertToggle> {
                   val=false;
 
                   return new Switch(value: val, onChanged: (bool va){
-                    setState(() {
-                      val=va;
-                      snapshot.data.setBool("alert"+widget.uid,va);
-                    });
+                    if(mounted){
+                      setState(() {
+                        val=va;
+                        snapshot.data.setBool("alert"+widget.uid,va);
+                      });
+                    }
                   });                }
           }
           else
